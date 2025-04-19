@@ -22,6 +22,23 @@ public class PlayerController : MonoBehaviour
         winTextObject.SetActive(false);
     }
 
+    void Update()
+    {
+        EndGame();
+    }
+
+    private void EndGame()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+    }
+
     void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
